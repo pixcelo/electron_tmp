@@ -18,7 +18,10 @@ information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.
 
 // Dialog
 const btn = document.getElementById('btn');
-const text = document.getElementById('text');
+// const text = document.getElementById('text');
+// btn.onclick = async () => {
+//     text.textContent = await window.apis.openDialog();
+// };
 btn.onclick = async () => {
-    text.textContent = await window.apis.openDialog();
+    await window.apis.mkDir();
 };

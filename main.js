@@ -1,6 +1,7 @@
 const { app, BrowserView, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
+const { getExportName } = require('./modules/helper');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -24,9 +25,10 @@ const createWindow = () => {
       });
   });
   ipcMain.handle('make-directory', async (_e, _arg) => {
-    if (!fs.existsSync('tmp')) {
+    const pathName = 'import_' + getExportName();
+    if (!fs.existsSync('./download/' + pathName)) {
       return fs
-        .mkdirSync('tmp', (err, folder) => {
+        .mkdirSync('download/' + pathName, { recursive: true }, (err, folder) => {
           if (err) throw err;
           console.log(folder);
         });

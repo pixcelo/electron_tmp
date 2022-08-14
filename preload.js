@@ -9,5 +9,6 @@ contextBridge.exposeInMainWorld('versions', {
 
 contextBridge.exposeInMainWorld('apis', {
     openDialog: async () => ipcRenderer.invoke('open-dialog'),
+    openBrowser: async () => ipcRenderer.invoke('open-browser'),
     mkDir: async () => ipcRenderer.invoke('make-directory'),
 });
