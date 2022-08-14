@@ -1,0 +1,23 @@
+{
+  "name": "electron_tmp",
+  "version": "1.0.0",
+  "description": "test-description",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixcelo/electron_tmp.git"
+  },
+  "keywords": [],
+  "author": "test-author",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pixcelo/electron_tmp/issues"
+  },
+  "homepage": "https://github.com/pixcelo/electron_tmp#readme",
+  "devDependencies": {
+    "electron": "^20.0.2"
+  }
+}
