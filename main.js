@@ -1,5 +1,6 @@
 const { app, BrowserView, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -21,6 +22,15 @@ const createWindow = () => {
         // return selected absolute pathname
         return result.filePaths[0];
       });
+  });
+  ipcMain.handle('make-directory', async (_e, _arg) => {
+    if (!fs.existsSync('tmp')) {
+      return fs
+        .mkdirSync('tmp', (err, folder) => {
+          if (err) throw err;
+          console.log(folder);
+        });
+    }
   });
 
   win.loadFile('index.html');

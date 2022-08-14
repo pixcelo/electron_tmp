@@ -20,5 +20,5 @@ information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.
 const btn = document.getElementById('btn');
 const text = document.getElementById('text');
 btn.onclick = async () => {
-    text.textContent = await window.versions.openDialog();
+    text.textContent = await window.apis.openDialog();
 };
