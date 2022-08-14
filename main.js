@@ -1,7 +1,7 @@
 const { app, BrowserView, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
-const { getExportName } = require('./modules/helper');
+const { getExportName, downLoadFile } = require('./modules/helper');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -34,17 +34,22 @@ const createWindow = () => {
         });
     }
   });
+  ipcMain.handle('open-browser', async (_e, _arg) => {
+    // work on Main process
+    const view = new BrowserView({
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+      }
+    });
+    win.setBrowserView(view);
+    view.setBounds({ x: 400, y: 400, width: 500, height: 500 });
+    view.webContents.loadURL('https://electronjs.org');
+  });
 
   win.loadFile('index.html');
 
   // open devTools
   win.webContents.openDevTools();
-
-  // work on Main process
-  const view = new BrowserView();
-  //win.setBrowserView(view);
-  view.setBounds({ x: 0, y: 0, width: 300, height: 300 });
-  view.webContents.loadURL('https://electronjs.org');
 };
 
 app.whenReady().then(() => {

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pixcelo/electron_tmp#readme",
   "devDependencies": {
-    "electron": "^20.0.2"
+    "electron": "^20.0.2",
+    "electron-dl": "^3.3.1"
   }
 }

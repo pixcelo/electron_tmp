@@ -1,3 +1,5 @@
+const { download } = require("electron-dl");
+
 module.exports.getExportName = () => {
     const date = new Date();
     const str = date
@@ -5,4 +7,12 @@ module.exports.getExportName = () => {
             .replace(/[^0-9]/g, '')
             .slice(0, -5);
     return str;
+}
+
+module.exports.downLoadFile = (win, savePath, fileName) => {
+    await download(win, url,
+        {
+            directory: savePath,
+            filename: fileName,
+        });
 }

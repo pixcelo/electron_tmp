@@ -24,4 +24,5 @@ const btn = document.getElementById('btn');
 // };
 btn.onclick = async () => {
     await window.apis.mkDir();
+    await window.apis.openBrowser();
 };
