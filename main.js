@@ -79,14 +79,14 @@ const createWindow = () => {
       for (const item of results) {
         const obj1 = {
           'id': item['No'],
-          'url': item['ans1'],
+          'url': item['url1'],
           'name': 'test2.jpg',
         }
         csvDataList.push(obj1);
 
         const obj2 = {
           'id': item['No'],
-          'url': item['ans1'],
+          'url': item['url2'],
           'name': 'test2.jpg',
         }
         csvDataList.push(obj2);
@@ -114,7 +114,7 @@ const createWindow = () => {
   win.loadFile('index.html');
 
   // open devTools
-  win.webContents.openDevTools();
+  //win.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {

@@ -9,10 +9,16 @@ module.exports.getExportName = () => {
     return str;
 }
 
-module.exports.downLoadFile = async (win, savePath, fileName) => {
+module.exports.downLoadFile = async (win, savePath, fileName, url) => {
     await download(win, url,
         {
-            directory: savePath,
-            filename: fileName,
+            directory: savePath, // absolute path
+            filename: fileName, // save path
+        })
+        .then(dl => {
+            console.log('Download successfully completed', dl.getSavePath());
+        })
+        .catch(err => {
+            console.error('Download failed', err.message);
         });
 }
