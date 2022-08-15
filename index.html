@@ -13,12 +13,19 @@
     <title>Hello from Electron renderer!</title>
   </head>
   <body>
-    <h1>Hello from Electron renderer!</h1>
-    <p>👋</p>
-    <p id="info"></p>
-    <p id="text"></p>
-    <input type="file" accept=".csv">
-    <button id="btn">open</button>
+    <div class="container">
+      <p>1.Login target site.</p>
+      <button id="btnLogin">Login</button>
+
+      <p>2.Select csv file.</p>
+      <label for="uploadFile">csv:</label>
+      <input  type="text" id="uploadFile" name="uploadFile"></input>
+      <button id="btnLoad">Browse</button><br>
+      <!-- <input type="file" id="uploadFile" name="uploadFile" accept=".csv"><br><br> -->
+      <button id="btnExit">Exit</button><button id="btnRun">Run</button>
+
+      <br><button id="btnTest">Download test</button>
+    </div>
   </body>
   <script src="./renderer.js"></script>
 </html>
