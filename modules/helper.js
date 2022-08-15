@@ -9,7 +9,7 @@ module.exports.getExportName = () => {
     return str;
 }
 
-module.exports.downLoadFile = (win, savePath, fileName) => {
+module.exports.downLoadFile = async (win, savePath, fileName) => {
     await download(win, url,
         {
             directory: savePath,
