@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
-const { getExportName, downLoadFile } = require('./helper');
+const { Logger } = require('./logger');
+const helper = require('./helper');
 const path = require('path');
 const fs = require('fs');
 const iconv = require('iconv-lite');
@@ -14,6 +15,9 @@ const createWindow = () => {
     },
   });
   //shell.openPath('./download');
+  console.log('test');
+  Logger.log('test_log');
+  Logger.error('test_error');
 
   // ICP handler
   ipcMain.handle('open-dialog', async (_e, _arg) => {
@@ -53,7 +57,7 @@ const createWindow = () => {
     child.webContents.loadURL('https://electronjs.org');
     child.show();
 
-    myWindow.once("close", ()=>{
+    child.once("close", ()=>{
       child = null;
     });
   });
@@ -90,7 +94,7 @@ const createWindow = () => {
       }
     })
     .then(() => {
-      const dirPath = './download/' + getExportName() +  '_import';
+      const dirPath = './download/' + helper.getExportName() +  '_import';
       for (const csv of csvDataList) {
         const savePath = path.join(dirPath, csv.id);
         fs.mkdirSync(savePath, { recursive: true });
@@ -121,4 +125,8 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       app.quit();
     }
+});
+
+process.on('uncaughtException', (err) => {
+  logger.error(err);
 });
