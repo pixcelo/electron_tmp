@@ -1,0 +1,10 @@
+[2022-08-17T02:54:15.323] [INFO] default - test_log
+[2022-08-17T02:54:15.326] [ERROR] default - test_error
+[2022-08-17T02:54:45.291] [INFO] default - test_log
+[2022-08-17T02:54:45.293] [ERROR] default - test_error
+[2022-08-17T02:56:18.722] [INFO] default - test_log
+[2022-08-17T02:56:18.723] [ERROR] default - test_error
+[2022-08-17T03:03:07.032] [INFO] default - test_log
+[2022-08-17T03:03:07.034] [ERROR] default - test_error
+[2022-08-17T03:05:10.802] [INFO] default - test_log
+[2022-08-17T03:05:10.803] [ERROR] default - test_error
