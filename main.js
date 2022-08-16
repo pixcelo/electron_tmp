@@ -1,4 +1,4 @@
-const { app, BrowserView, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserView, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const { getExportName, downLoadFile } = require('./modules/helper');
 const path = require('path');
 const fs = require('fs');
@@ -13,6 +13,7 @@ const createWindow = () => {
         preload: path.join(__dirname, 'preload.js'),
     },
   });
+  //shell.openPath('./download');
 
   // ICP handler
   ipcMain.handle('open-dialog', async (_e, _arg) => {
@@ -33,32 +34,28 @@ const createWindow = () => {
       });
   });
 
-  ipcMain.handle('make-directory', async (_e, _arg) => {
-    const dirName = getExportName() +  '_import';
-    if (!fs.existsSync('./download/' + pathName)) {
-      return fs
-        .mkdirSync('download/' + pathName, { recursive: true }, (err, folder) => {
-          if (err) throw err;
-          console.log(folder);
-        });
-    }
-  });
-
   ipcMain.handle('download-file', async (_e, _arg) => {
     const url = 'https://electronjs.org/test.jpg';
     downLoadFile(win, path.resolve('./download/'), 'test.jpg', url);
   });
 
+  let child;
+
   ipcMain.handle('open-browser', async (_e, _arg) => {
     // work on Main process
-    const view = new BrowserView({
+    child = new BrowserWindow({
+      parent: win,
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
       }
+    })
+    child.setBounds({ x: 400, y: 400, width: 500, height: 500 });
+    child.webContents.loadURL('https://electronjs.org');
+    child.show();
+
+    myWindow.once("close", ()=>{
+      child = null;
     });
-    win.setBrowserView(view);
-    view.setBounds({ x: 400, y: 400, width: 500, height: 500 });
-    view.webContents.loadURL('https://electronjs.org');
   });
 
   // Event listener
@@ -92,12 +89,11 @@ const createWindow = () => {
         csvDataList.push(obj2);
       }
     })
-    .then((results) => {
+    .then(() => {
       const dirPath = './download/' + getExportName() +  '_import';
       for (const csv of csvDataList) {
         const savePath = path.join(dirPath, csv.id);
         fs.mkdirSync(savePath, { recursive: true });
-        console.log('mkdir called', savePath);
         downLoadFile(win, path.resolve(savePath), csv.name, csv.url);
       }
     })
