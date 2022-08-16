@@ -1,5 +1,5 @@
-const { app, BrowserView, BrowserWindow, ipcMain, dialog, shell } = require('electron');
-const { getExportName, downLoadFile } = require('./modules/helper');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
+const { getExportName, downLoadFile } = require('./helper');
 const path = require('path');
 const fs = require('fs');
 const iconv = require('iconv-lite');
@@ -107,7 +107,7 @@ const createWindow = () => {
     app.quit();
   });
 
-  win.loadFile('index.html');
+  win.loadFile('./src/index.html');
 
   // open devTools
   //win.webContents.openDevTools();

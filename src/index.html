@@ -10,21 +10,23 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:300
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
     <title>Hello from Electron renderer!</title>
   </head>
   <body>
     <div class="container">
-      <p>1.Login target site.</p>
+      <p>1. Login target site.</p>
       <button id="btnLogin">Login</button>
 
-      <p>2.Select csv file.</p>
+      <p>2. Select csv file.</p>
       <label for="uploadFile">csv:</label>
       <input  type="text" id="uploadFile" name="uploadFile"></input>
       <button id="btnLoad">Browse</button><br>
-      <!-- <input type="file" id="uploadFile" name="uploadFile" accept=".csv"><br><br> -->
       <button id="btnExit">Exit</button><button id="btnRun">Run</button>
-
-      <br><button id="btnTest">Download test</button>
     </div>
   </body>
   <script src="./renderer.js"></script>
